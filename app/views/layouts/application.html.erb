@@ -31,6 +31,10 @@
 		    			<li class="divider-vertical"></li>
 		    			
 		    			<li><%= link_to 'Portfolio', '/'%></li>
+		    			<% if admin_signed_in? %>
+						  <li class="divider-vertical"></li>
+						  <li><%= link_to('Logout', destroy_admin_session_path, :method => :delete) %></li>        
+						<% end %>
 		    		</ul>
 		    		
 		    		<form class="navbar-search pull-right">
@@ -43,8 +47,12 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="span9"><%= yield %></div>
-		<div class="span3"></div>
+		<div class="span9">
+			<p class="notice"><%= notice %></p>
+			<%= yield %>
+			</div>
+		<div class="span3">
+		</div>
 	</div>
 </div>
 

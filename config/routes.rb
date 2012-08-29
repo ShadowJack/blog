@@ -1,5 +1,8 @@
 # -*- encoding : utf-8 -*-
 TestBlog::Application.routes.draw do
+  devise_for :admins
+  mount RedactorRails::Engine => '/redactor_rails'
+
   root :to => 'posts#index'
   
   resources :posts

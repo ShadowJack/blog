@@ -43,4 +43,12 @@ gem 'client_side_validations', '3.2.0.beta.6', :git => 'https://github.com/bcard
 
 gem 'simple_form', '2.0'
 
-gem 'bootstrap-wysihtml5-rails'
+gem 'redactor-rails'
+
+gem "carrierwave"
+
+gem "mini_magick"
+
+gem 'devise'
+
+gem 'cancan'

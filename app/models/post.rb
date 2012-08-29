@@ -4,10 +4,11 @@ class Post < ActiveRecord::Base
   validates_presence_of :title, :message => 'Заполните заголовок статьи!'
     
   def cut_content
-      if self.content.size > 400
-        self.content[0, 400]
+      if self.content.size > 1000
+        self.content[0, 1000]
       else
         self.content
       end
-  end  
+  end 
+  
 end

@@ -14,5 +14,5 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require rails.validations
-//= require bootstrap-wysihtml5-all
+//= require redactor-rails
 //= require_tree .

@@ -1,14 +1,14 @@
 # -*- encoding : utf-8 -*-
 class PostsController < ApplicationController
+  
+  def current_user
+    current_admin
+  end 
+  
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
-    #logger.debug "Потсыки загружены: #{@posts}"
-    #@posts.each do |post|
-    #  logger.debug "~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-    #  logger.debug "#{post.cut_content}"
-    #end
+    @posts = Post.all :order => "created_at DESC"
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @posts }
@@ -19,7 +19,6 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @post }
@@ -30,7 +29,7 @@ class PostsController < ApplicationController
   # GET /posts/new.json
   def new
     @post = Post.new
-
+    authorize! :create, @post
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @post }
@@ -40,12 +39,14 @@ class PostsController < ApplicationController
   # GET /posts/1/edit
   def edit
     @post = Post.find(params[:id])
+    authorize! :update, @post
   end
 
   # POST /posts
   # POST /posts.json
   def create
     @post = Post.new(params[:post])
+    authorize! :create, @post
     logger.debug "saving object: #{@post}"
     respond_to do |format|
       if @post.save
@@ -62,7 +63,7 @@ class PostsController < ApplicationController
   # PUT /posts/1.json
   def update
     @post = Post.find(params[:id])
-
+    authorize! :update, @post
     respond_to do |format|
       if @post.update_attributes(params[:post])
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
@@ -78,6 +79,7 @@ class PostsController < ApplicationController
   # DELETE /posts/1.json
   def destroy
     @post = Post.find(params[:id])
+    authorize! :destroy, @post
     @post.destroy
 
     respond_to do |format|
