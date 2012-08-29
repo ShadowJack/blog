@@ -5,7 +5,7 @@ class Post < ActiveRecord::Base
     
   def cut_content
       if self.content.size > 1000
-        self.content[0, 1000]
+        self.content[0, 1000] + "..."
       else
         self.content
       end

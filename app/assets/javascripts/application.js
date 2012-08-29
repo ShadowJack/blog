@@ -15,4 +15,5 @@
 //= require twitter/bootstrap
 //= require rails.validations
 //= require redactor-rails
+//= require jqcloud
 //= require_tree .

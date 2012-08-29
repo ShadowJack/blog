@@ -9,7 +9,9 @@
 	<div class="hero-unit">
 		<h2><%= post.title %></h2>
 		<%= raw post.cut_content %>
-		<p><%= link_to 'Читать далее', post_path(post), :class => "btn btn-info btn-small" %></p>
+		<% if post.cut_content < post.content %>
+			<p><%= link_to 'Читать далее', post_path(post), :class => "btn btn-info btn-small" %></p>
+		<% end %>
 	</div>
 <% end %>
 

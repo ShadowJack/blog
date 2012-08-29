@@ -60,6 +60,8 @@ GEM
     hike (1.2.1)
     i18n (0.6.0)
     journey (1.0.4)
+    jqcloud-rails (1.0.0)
+      jquery-rails
     jquery-rails (2.1.1)
       railties (>= 3.1.0, < 5.0)
       thor (~> 0.14)
@@ -150,6 +152,7 @@ DEPENDENCIES
   client_side_validations (= 3.2.0.beta.6)!
   coffee-rails (~> 3.2.1)
   devise
+  jqcloud-rails
   jquery-rails
   mini_magick
   rails (= 3.2.8)

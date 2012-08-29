@@ -52,3 +52,5 @@ gem "mini_magick"
 gem 'devise'
 
 gem 'cancan'
+
+gem "jqcloud-rails"
