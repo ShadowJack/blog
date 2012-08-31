@@ -53,4 +53,6 @@ gem 'devise'
 
 gem 'cancan'
 
-gem "jqcloud-rails"
+gem 'kaminari'
+
+gem 'bootstrap-kaminari-views'

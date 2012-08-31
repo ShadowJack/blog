@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all :order => "created_at DESC"
+    @posts = Post.order('created_at DESC').page(params[:page]).per(10)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @posts }
@@ -19,6 +19,10 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
+    @next_post = @post.next
+    @prev_post = @post.previous
+    #logger.debug "Prev: #{prev_post}"
+    #logger.debug "Next: #{next_post}"
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @post }

@@ -9,6 +9,28 @@
 <div class="hero-unit">
 	<h2><%= @post.title %></h2>
 	<%= raw @post.content %>
+	
+	<ul class="pager">
+	<% unless @prev_post.nil? %>
+	  <li class="previous">
+	    <%= link_to raw("&larr;Newer"), post_path(@prev_post) %>
+	  </li>
+	<% else %>
+	  <li class="previous disabled">
+	    <%= link_to raw("&larr;Newer"), '#' %>
+	  </li>
+	<% end %>
+	<% unless @next_post.nil? %>
+	  <li class="next">
+	    <%= link_to raw('Older&rarr;'), post_path(@next_post) %>
+	  </li>
+	<% else %>
+	  <li class="next disabled">
+	    <%= link_to raw('Older&rarr;'), '#' %>
+	  </li>
+	<% end %>
+	</ul>
+	
 </div>
 
 <div class="form-actions">
@@ -29,6 +51,4 @@
 	<script type="text/javascript"><!--
 	document.write(VK.Share.button(false,{type: "link", text: "Сохранить"}));
 	--></script>
-
-
 </div>

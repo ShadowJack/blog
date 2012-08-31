@@ -1,0 +1,22 @@
+<div class="hero-unit">
+	
+	<div class="pull-right" id="admin_panel">
+		<% if can? :update, post%>
+	  		<%= link_to t('.edit', :default => t("helpers.links.edit")),
+	              edit_post_path(post), :class => 'btn' %>
+		<% end %>
+		<% if can? :destroy, post%>
+			<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+	              post_path(post),
+	              :method => 'delete',
+	              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+	              :class => 'btn btn-danger' %>
+	    <% end %>
+	</div>
+	
+	<h2><%= post.title %></h2>
+	<%= raw post.cut_content %>
+	<% if post.cut_content < post.content %>
+		<p><%= link_to 'Читать далее', post_path(post), :class => "btn btn-info btn-small" %></p>
+	<% end %>
+</div>
