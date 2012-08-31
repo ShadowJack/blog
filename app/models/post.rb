@@ -1,6 +1,9 @@
 # -*- encoding : utf-8 -*-
 class Post < ActiveRecord::Base
-  attr_accessible :content, :title, :logo
+  has_many :assignments
+  has_many :tags, :through => :assignments, :class_name => 'Tag'
+  attr_accessible :content, :title, :tag_ids
+  accepts_nested_attributes_for :tags
   validates_presence_of :title, :message => 'Заполните заголовок статьи!'
     
   def cut_content

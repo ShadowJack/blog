@@ -1,3 +1,5 @@
 class Tag < ActiveRecord::Base
-  attr_accessible :tag
+  has_many :assignments
+  has_many :posts, :through => :assignments
+  attr_accessible :tag, :post_ids
 end
