@@ -4,7 +4,7 @@ TestBlog::Application.routes.draw do
   mount RedactorRails::Engine => '/redactor_rails'
 
   root :to => 'posts#index'
-  
+  match  '/feed' => 'posts#feed', :as => :feed, :defaults => { :format => 'atom'}
   resources :posts
   
   

@@ -5,6 +5,14 @@ class PostsController < ApplicationController
     current_admin
   end 
   
+  def feed
+    @posts = Post.feed_posts
+    logger.debug("#{@posts}")
+    respond_to do |format|
+      format.atom { render :layout => false } #feed.atom.builder
+    end
+  end
+  
   # GET /posts
   # GET /posts.json
   def index

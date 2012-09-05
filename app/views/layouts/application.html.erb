@@ -5,6 +5,7 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <%= javascript_include_tag "jquery.awesomeCloud.min" %>
   
 </head>
 <body>
@@ -65,6 +66,41 @@
 			
 		</div>
 		<div class="span3">
+			<div id="tagcloud" class="control-element">
+				<!-- TODO: при увеличении количества статей можно возвращать реальные значения -->
+				<% Tag.all.each do |elem| %>
+					<span data-weight=<%= 20 + Random.rand(30) %> > <%= elem.tag %> </span>
+				<% end %>
+			</div>
+			<script>
+			    $(document).ready(function(){
+			    	$("#tagcloud").awesomeCloud({
+					"size" : {
+						"grid" : 10,
+						"factor" : 1
+					},
+					"options" : {
+						"color" : "random-dark",
+						"rotationRatio" : 0.35
+					},
+					"font" : "'Times New Roman', Times, serif",
+					"shape" : "circle"
+				});
+			    })
+			</script>
+			
+			<div id="latest_posts" class="control-element">
+				<h5>Latest posts:</h5>
+				<ul>
+					<% Post.all(:order => "created_at DESC", :limit => 10).each do |elem| %>
+						<li><%= link_to elem.title, post_path(elem) %></li>
+					<% end %>
+				</ul>
+			</div>
+			<%= auto_discovery_link_tag(:atom, feed_path) %>
+			<div id="feed" class="control-element">
+				<%= link_to image_tag("feed-icon-28x28.png", {:alt => 'Atom feed', :class=>"feed"})+' Subscribe', feed_path %>
+			</div>
 		</div>
 	</div>
 </div>
